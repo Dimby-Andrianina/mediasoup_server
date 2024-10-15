@@ -1,0 +1,18 @@
+@startuml sma
+
+class produce  {
+
+}
+
+class Transport {
+  produce 
+}
+
+class Participant {
+  transport Transport
+  producer 
+}
+
+
+Participant <-- Transport
+@enduml

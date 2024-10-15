@@ -94,6 +94,11 @@ createWorker().then(async () => {
       callback({ roomId: roomId, routerRtpCapabilities: router.rtpCapabilities });
     });
 
+    socket.on('connectTransport', async (req)=> {
+      console.log('eto');
+      
+    })
+
     // Join an existing room
     socket.on('joinRoom', async ({ roomId, peerId }, callback) => {
       const room = rooms[roomId];
@@ -128,6 +133,7 @@ createWorker().then(async () => {
     });
 
     // Handle producer stream publication
+    
     socket.on('produce', async ({ roomId, kind, rtpParameters }, callback) => {
       const room = rooms[roomId];
       if (!room) return callback({ error: 'Room not found' });
@@ -213,6 +219,6 @@ createWorker().then(async () => {
 
 // Start the server
 const PORT = 4400;
-server.listen(PORT, '0.0.0.0', () => {
+server.listen(PORT, '127.0.0.1', () => {
   console.log(`Server is running on port ${PORT}`);
 });
